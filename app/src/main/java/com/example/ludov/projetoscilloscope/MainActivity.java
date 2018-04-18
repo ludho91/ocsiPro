@@ -3,6 +3,8 @@ package com.example.ludov.projetoscilloscope;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,5 +20,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(this, "salut", Toast.LENGTH_SHORT).show();
+        return super.onOptionsItemSelected(item);
+    }
 }

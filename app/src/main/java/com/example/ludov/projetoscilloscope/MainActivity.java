@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if(bluetoothRights() == NO_BLUETOOTH)
             Toast.makeText(this, "pas De bluetooth", Toast.LENGTH_SHORT).show();
         if(bluetoothRights() == PERMISSION_GRANTED)
-            Toast.makeText(this, "bluetooth autorisé", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "bluetooth activé", Toast.LENGTH_SHORT).show();
         if(bluetoothRights() == PERMISSION_DENIED)
             Toast.makeText(this, "blueetooth refusé", Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
@@ -84,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else
+        {
+            intent = new Intent(mBluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent,1);
             return PERMISSION_GRANTED;
+        }
 
 
         return 0;

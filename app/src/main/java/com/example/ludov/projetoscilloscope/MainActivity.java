@@ -93,7 +93,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-
+        for (int grantResult:grantResults
+             ) {
+            if(grantResult == PERMISSION_DENIED){
+                break;
+            }
+            if(mBluetoothAdapter.disable()) {
+                intent = new Intent(mBluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(intent,1);
+            }
+        }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 

@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="test" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsFloating">true</item>
+
+
+    </style>
 </resources>

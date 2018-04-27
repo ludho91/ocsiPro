@@ -3,6 +3,7 @@ package com.example.ludov.projetoscilloscope;
 import android.Manifest;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -10,9 +11,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.Set;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_DENIED;
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
@@ -31,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
     }
 
     @Override
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         {
             intent = new Intent(mBluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, 1);
+            startActivity(new Intent(MainActivity.this,BlueetoothConnectActivity.class));
 
             Toast.makeText(this, "bluetooth activé", Toast.LENGTH_SHORT).show();
         }

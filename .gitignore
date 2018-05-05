@@ -6,4 +6,9 @@
 .DS_Store
 /build
 /captures
-.externalNativeBuild
+.externalNativeBuil
+.idea/caches/build_file_checksums.ser
+.idea/misc.xml
+.idea/modules.xml
+
+

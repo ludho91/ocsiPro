@@ -36,6 +36,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View view) {
         this.mBluetoothAdapter.startDiscovery();
+        mProgressBar.setVisibility(View.VISIBLE);
 
 
         final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -50,6 +51,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
                 if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
                 {
                     mBluetoothAdapter.cancelDiscovery();
+                    mProgressBar.setVisibility(View.GONE);
                     unregisterReceiver(this);
                 }
             }

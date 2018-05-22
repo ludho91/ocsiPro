@@ -46,7 +46,8 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
                 if (BluetoothDevice.ACTION_FOUND.equals(action))
                 {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    adapterDiscoveredDevice.add(device.getName());
+                    adapterDiscoveredDevice.add(device.getName() + "\n" + device.getAddress());
+
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
                 {
@@ -103,7 +104,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
 
         for (BluetoothDevice device : setPairedDevices)
         {
-            stringArrayAdapter.add(device.getName());
+            stringArrayAdapter.add(device.getName() + "\n" + device.getAddress());
         }
 
 

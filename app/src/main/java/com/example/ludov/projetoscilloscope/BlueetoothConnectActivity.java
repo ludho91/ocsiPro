@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,7 +23,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-public class BlueetoothConnectActivity extends AppCompatActivity implements View.OnClickListener {
+public class BlueetoothConnectActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private BluetoothAdapter mBluetoothAdapter;
     private ListView pairedDevicesListView, discoveredDevicesListView;
@@ -63,6 +64,12 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
     }
 
     @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        setResult(RESULT_OK,getIntent().putExtra("deviceName", ((TextView)view).getText() ));
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -94,6 +101,8 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
 
 
         searching.setOnClickListener(this);
+        pairedDevicesListView.setOnItemClickListener(this);
+        discoveredDevicesListView.setOnItemClickListener(this);
 
 
 

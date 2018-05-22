@@ -29,8 +29,20 @@ public class MainActivity extends AppCompatActivity {
     //codes d'érreur
     Intent intent;
     static private final int NO_BLUETOOTH = 100;
+    final static private int REQUEST_CODE = 3;
     private int userResponse;
     private String permissions[] = {Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN,Manifest.permission.ACCESS_FINE_LOCATION};
+
+    private BluetoothDevice deviceToConnect;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE)
+        {
+            Toast.makeText(this, data.getStringExtra("deviceName") , Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     private BluetoothAdapter mBluetoothAdapter;
     @Override
@@ -59,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         {
             intent = new Intent(mBluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, 1);
-            startActivity(new Intent(MainActivity.this,BlueetoothConnectActivity.class));
+            startActivityForResult(new Intent(MainActivity.this,BlueetoothConnectActivity.class),REQUEST_CODE);
 
             Toast.makeText(this, "bluetooth activé", Toast.LENGTH_SHORT).show();
         }

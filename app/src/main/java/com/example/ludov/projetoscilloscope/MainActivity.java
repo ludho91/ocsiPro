@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE)
         {
+            final String adress = data.getStringExtra("deviceAdress");
             Toast.makeText(this, data.getStringExtra("deviceName") , Toast.LENGTH_SHORT).show();
+            deviceToConnect = mBluetoothAdapter.getRemoteDevice(adress);
+            BluetoothManager connection = new BluetoothManager(deviceToConnect);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

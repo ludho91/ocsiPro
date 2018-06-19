@@ -32,6 +32,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
     private IntentFilter filterDiscovered;
     private IntentFilter filterEndDiscovering;
     private ArrayAdapter<String> adapterDiscoveredDevice;
+    private String deviceAdress;
 
 
     @Override
@@ -48,6 +49,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
                 {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     adapterDiscoveredDevice.add(device.getName() + "\n" + device.getAddress());
+                    deviceAdress = device.getAddress();
 
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
@@ -65,7 +67,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        setResult(RESULT_OK,getIntent().putExtra("deviceName", ((TextView)view).getText() ));
+        setResult(RESULT_OK,getIntent().putExtra("deviceName", deviceAdress));
         finish();
     }
 

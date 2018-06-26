@@ -34,19 +34,17 @@ class BluetoothManager extends AppCompatActivity
     }
     public BluetoothManager(BluetoothDevice device)
     {
+        connect(device);
+    }
+
+    public void connect(BluetoothDevice device)
+    {
         mConnection = new ConnectThread(device);
         mConnection.run();
     }
 
-    public interface Tranceiver{
-        interface TranceiverEventListener{
-            void onTransceiverStateChanged(int state);
-            void onTransceiverUnableToConnect();
-            void onTranceiverConnectionLoast();
-        }
-        interface TranceiverDataListenet{
-            void onTranceiverDataReceived(FrameProcessor data);
-        }
+    public void stop(){
+        mConnection.cancel();
     }
 
 

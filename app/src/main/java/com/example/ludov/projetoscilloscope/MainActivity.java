@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE)
         {
             final String adress = data.getStringExtra("deviceAdress");
-            Toast.makeText(this, data.getStringExtra("deviceName") , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, data.getStringExtra("deviceAdress") , Toast.LENGTH_SHORT).show();
+
             deviceToConnect = mBluetoothAdapter.getRemoteDevice(adress);
+            Toast.makeText(this, deviceToConnect.getName(), Toast.LENGTH_SHORT).show();
             BluetoothManager connection = new BluetoothManager(deviceToConnect);
         }
         super.onActivityResult(requestCode, resultCode, data);

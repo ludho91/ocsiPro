@@ -39,6 +39,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
     public void onClick(View view) {
         this.mBluetoothAdapter.startDiscovery();
         mProgressBar.setVisibility(View.VISIBLE);
+        adapterDiscoveredDevice.clear();
 
 
         final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -48,9 +49,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
                 if (BluetoothDevice.ACTION_FOUND.equals(action))
                 {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    adapterDiscoveredDevice.add(device.getName() + "\n" + device.getAddress());
-                    deviceAdress = device.getAddress();
-
+                    adapterDiscoveredDevice.add(device.getAddress() + "\n" + device.getName());
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
                 {
@@ -67,7 +66,8 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        setResult(RESULT_OK,getIntent().putExtra("deviceName", deviceAdress));
+        deviceAdress = adapterView.getItemAtPosition(i).toString().substring(0,17);
+        setResult(RESULT_OK,getIntent().putExtra("deviceAdress", deviceAdress));
         finish();
     }
 
@@ -115,7 +115,7 @@ public class BlueetoothConnectActivity extends AppCompatActivity implements View
 
         for (BluetoothDevice device : setPairedDevices)
         {
-            stringArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            stringArrayAdapter.add(device.getAddress() + "\n" + device.getName() );
         }
 
 

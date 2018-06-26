@@ -14,9 +14,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.colas.slidertest.Slider;
 
 import java.util.Set;
 
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     final static private int REQUEST_CODE = 3;
     private int userResponse;
     private String permissions[] = {Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN,Manifest.permission.ACCESS_FINE_LOCATION};
+    private Slider controle;
 
     private BluetoothDevice deviceToConnect;
 
@@ -55,9 +59,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        controle = (Slider)findViewById(R.id.slider);
 
+        controle.setSliderListener(new Slider.SliderListener() {
+            @Override
+            public void onValueChanged(View view, float v) {
+            }
 
+            @Override
+            public void onDoubleClick(View view, float v) {
 
+            }
+        });
     }
 
     @Override
